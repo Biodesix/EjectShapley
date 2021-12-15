@@ -1,6 +1,6 @@
 # Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles
 
-This repository is the official implementation of [Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles](https://github.com/Biodesix/EjectShapley) (link will be updated when paper is on posted). 
+This repository is the official implementation of [Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles](https://github.com/Biodesix/EjectShapley) (link will be updated when paper is posted). 
 
 ## Requirements
 
@@ -11,7 +11,17 @@ Download the data and results files from [here](https://github.com/Biodesix/Ejec
 
 ## Training, Evaluation, and Results
 
-In the top directory, there are scripts to train, validate, and calculate Shapley values on all data sets considered in the manuscript.  Scripts that have 'draw' prepended to their name produce plots, some of which are those from the manuscript.  These scripts are labeled by which figure in the manuscript they correspond to.  For figures 2, and 5, the models are very lightweight and are trained in the drawing scripts.  For figures 3, 4, and E1, there are separate scripts for training/validating/SV calculation named fig3.py, etc.  These models are less lightweight (or at least the SV calculation is).  These will need to be run before the corresponding draw_fixX.py scripts, but please note that by default, they will only produce abbreviated results.  The full result files can be downloaded from [here](https://github.com/Biodesix/EjectShapley) (link to be updated), so the draw scripts can be run on those (and will by default) to produce the plots from the manuscript.  Figure E2 will also produce abbreviated results by default, but this can be overwritten in the script. 
+In the top directory, there are scripts to train and validate models and calculate Shapley values on the validation set on all data sets considered in the manuscript.
+- *fig3.py*: trains, validates, and calculates SVs necessary for figure 3 results, produces abbreviated results by default
+- *fig4.py*: trains, validates, and calculates SVs necessary for figure 4 results, produces abbreviated results by default
+- *figE1.py*: trains, validates, and calculates SVs necessary for figure E1 results, produces abbreviated results by default
+- *draw_fig2.py*: trains, validates, calculates SVs, and produces plots for figure 2.
+- *draw_fig3.py*: produces plots for figure 3 on either downloaded full data set or data resulting data from *fig3.py*.
+- *draw_fig4AB.py*: produces plots for figure 4 (A and B) on either downloaded full data set or data resulting data from *fig4.py*.
+- *draw_fig4CD.py*: produces plots for figure 4 (C and D) on either downloaded full data set or data resulting data from *fig4.py*.
+- *draw_fig5.py*: trains, validates, calculates SVs, and produces plots for figure 5.
+- *draw_figE1.py*: produces plots for figure E1 on either downloaded full data set or data resulting data from *figE1.py*.
+- *draw_figE2.py*: trains, validates, calculates SVs, and produces plots for figure E2, produces abbreviated results by default.
 
 The classes that do the heavy lifting live in the 'crast' (Classification, Regression, and Survival Tree) directory.
 
