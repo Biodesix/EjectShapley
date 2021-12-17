@@ -6,7 +6,7 @@ This repository is the official implementation of [Exact Shapley Values for Loca
 
 basic libraries (numpy, matplotlib, etc), seaborn, shap
 
-Download the data and results files from [here](https://github.com/Biodesix/EjectShapley) (link to be updated), and put everything in the directory named 'data' for the data files and 'results' for the results files in the top directory.
+Download the data and results files from [here](https://data.mendeley.com/datasets/f7hnnyrssm/1), and put everything in the directory named 'data' for the data files and 'results' for the results files in the top directory.
 
 The results from the paper were produced using Python 3.8.5, xgboost 1.3.3, shap 0.39.0, and scikit-learn 0.15.2
 
