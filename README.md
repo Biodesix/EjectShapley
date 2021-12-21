@@ -1,6 +1,6 @@
 # Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles
 
-This repository is the official implementation of [Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles](https://github.com/Biodesix/EjectShapley) (link will be updated when paper is posted). 
+This repository is the official implementation of [Exact Shapley Values for Local and Model-True Explanations of Decision Tree Ensembles](https://arxiv.org/abs/2112.10592). 
 
 ## Requirements
 
