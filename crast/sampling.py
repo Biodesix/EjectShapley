@@ -16,7 +16,6 @@ class Engine:
 
         header_names = {'id':'', 'features': [], 'class':'', 'val':'', 'surv_time':'', 'surv_cens':''}
         if type(ftr_names) == list:
-            bad = False
             for ff in ftr_names:
                 if not type(ff) == str:
                     raise Exception('ftr_names must be list of strs')
