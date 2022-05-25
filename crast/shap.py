@@ -159,6 +159,49 @@ class Tree(crast.tree.Tree):
                         svs[iftr] += pre_factor*(self.predict_tree_ts_intervent(X, plus_set) - self.predict_tree_ts_intervent(X, list(combo)))
         return svs
 
+    # path summed SVs using eject predict, fast
+    def shap_values_eject_path_fast(self, X):
+
+        # get feature path
+        use_idxs = []
+        node_vals = []
+        next_idx = 0
+        last_idx = 0
+        ftr_counts = {}
+        while next_idx >= 0:
+            this_ftr = self.nodes[last_idx].feature
+            node_vals.append(self.nodes[last_idx].value)
+            if this_ftr in ftr_counts:
+                ftr_counts[this_ftr] += 1
+            else:
+                ftr_counts[this_ftr] = 1
+            use_idxs.append(this_ftr)
+            last_idx = next_idx
+            next_idx = self.nodes[next_idx].predict(X)
+        
+        # get unique path that removes duplicates leaving last instance in the path
+        unique_path = []
+        unique_vals = []
+        for ii, idx in enumerate(use_idxs):
+            if ftr_counts[idx] > 1:
+                ftr_counts[idx] = ftr_counts[idx] - 1
+            else:
+                unique_path.append(idx)
+                unique_vals.append(node_vals[ii])
+
+        svs = [0 for ii in range(len(X))]
+
+        # multiply coefficients into vals
+        for ii in range(len(unique_vals)):
+            if ii > 0:
+                unique_vals[ii] = unique_vals[ii]/(ii*(ii+1))
+
+        for iftr, ftr_idx in enumerate(unique_path):
+            svs[ftr_idx] = self.predict_tree(X)/len(unique_path) - unique_vals[iftr]
+            for val in unique_vals[iftr+1:]:
+                svs[ftr_idx] += val
+        return svs
+
 
     # path summed SVs using eject predict
     def shap_values_eject_path(self, X):
